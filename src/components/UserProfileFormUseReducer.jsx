@@ -60,8 +60,8 @@ maintainability kaafi improve ho jati hai.
 Jabki useState simple aur chhote use-cases ke liye best hai,
 complex scenarios me useReducer
 ek zyada scalable aur organized solution provide karta hai.
-*/
 
+*/
 
 /*
 ----------------------English Version--------------------------
@@ -138,19 +138,20 @@ While useState is perfect
 for simple and small use cases,
 useReducer provides a more scalable
 and organized solution for complex state management.
+
 */
 
 /*
 
 ------------------useState vs useReducer (Syntax & Basic Comparison)--------------------
 
- useState:
+useState:
 const [count, setCount] = useState(0);
 
 - count → current state value
 - setCount → function to update the state
 
- useReducer:
+useReducer:
 const [state, dispatch] = useReducer(reducer, initialState);
 
 - state → current state object (similar to count in useState)
@@ -177,8 +178,31 @@ lekin zyada scalable aur structured form me.
 ------------------------------------------------------------
 */
 
-
 import React, { useReducer } from 'react';
+
+/*
+--------------------------------------------
+Action Type Constants
+--------------------------------------------
+Using constants helps avoid typos and improves readability
+*/
+const SET_FIELD = 'SET_FIELD';
+const RESET = 'RESET';
+
+/*
+--------------------------------------------
+Field Constants
+--------------------------------------------
+Using constants for field names avoids typos and improves maintainability
+*/
+const FIELDS = {
+  NAME: 'name',
+  EMAIL: 'email',
+  AGE: 'age',
+  PASSWORD: 'password',
+  CONFIRM_PASSWORD: 'confirmPassword',
+};
+
 /*
 --------------------------------------------
 Initial State
@@ -186,12 +210,13 @@ Initial State
 All form fields are stored in one object
 */
 const initialState = {
-  name: '',
-  email: '',
-  age: '',
-  password: '',
-  confirmPassword: '',
+  [FIELDS.NAME]: '',
+  [FIELDS.EMAIL]: '',
+  [FIELDS.AGE]: '',
+  [FIELDS.PASSWORD]: '',
+  [FIELDS.CONFIRM_PASSWORD]: '',
 };
+
 /*
 --------------------------------------------
 Reducer Function
@@ -201,13 +226,13 @@ based on action.type
 */
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'SET_FIELD':
+    case SET_FIELD:
       return {
         ...state,
         [action.field]: action.value,
       };
 
-    case 'RESET':
+    case RESET:
       return initialState;
 
     default:
@@ -216,7 +241,7 @@ const reducer = (state, action) => {
 };
 
 const UserProfileFormUseReducer = () => {
-   /*
+  /*
   useReducer returns:
   - state  → current state object
   - dispatch → function to send actions
@@ -231,57 +256,51 @@ const UserProfileFormUseReducer = () => {
 
       <input
         placeholder="Name"
-        value={state.name}
+        value={state[FIELDS.NAME]}
         onChange={(e) =>
-          dispatch({ type: 'SET_FIELD', field: 'name', value: e.target.value })
+          dispatch({ type: SET_FIELD, field: FIELDS.NAME, value: e.target.value })
         }
       />
 
       <input
         placeholder="Email"
-        value={state.email}
+        value={state[FIELDS.EMAIL]}
         onChange={(e) =>
-          dispatch({ type: 'SET_FIELD', field: 'email', value: e.target.value })
+          dispatch({ type: SET_FIELD, field: FIELDS.EMAIL, value: e.target.value })
         }
       />
 
       <input
         placeholder="Age"
-        value={state.age}
+        value={state[FIELDS.AGE]}
         onChange={(e) =>
-          dispatch({ type: 'SET_FIELD', field: 'age', value: e.target.value })
+          dispatch({ type: SET_FIELD, field: FIELDS.AGE, value: e.target.value })
         }
       />
 
       <input
         type="password"
         placeholder="Password"
-        value={state.password}
+        value={state[FIELDS.PASSWORD]}
         onChange={(e) =>
-          dispatch({
-            type: 'SET_FIELD',
-            field: 'password',
-            value: e.target.value,
-          })
+          dispatch({ type: SET_FIELD, field: FIELDS.PASSWORD, value: e.target.value })
         }
       />
 
       <input
         type="password"
         placeholder="Confirm Password"
-        value={state.confirmPassword}
+        value={state[FIELDS.CONFIRM_PASSWORD]}
         onChange={(e) =>
           dispatch({
-            type: 'SET_FIELD',
-            field: 'confirmPassword',
+            type: SET_FIELD,
+            field: FIELDS.CONFIRM_PASSWORD,
             value: e.target.value,
           })
         }
       />
 
-      <button onClick={() => dispatch({ type: 'RESET' })}>
-        Reset
-      </button>
+      <button onClick={() => dispatch({ type: RESET })}>Reset</button>
     </div>
   );
 };

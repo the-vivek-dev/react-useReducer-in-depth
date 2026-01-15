@@ -135,8 +135,12 @@ and organized solution for complex state management.
 */
 
 import React, { useReducer } from 'react';
-
-// Initial state
+/*
+--------------------------------------------
+Initial State
+--------------------------------------------
+All form fields are stored in one object
+*/
 const initialState = {
   name: '',
   email: '',
@@ -144,8 +148,13 @@ const initialState = {
   password: '',
   confirmPassword: '',
 };
-
-// Reducer function
+/*
+--------------------------------------------
+Reducer Function
+--------------------------------------------
+This function decides how state should change
+based on action.type
+*/
 const reducer = (state, action) => {
   switch (action.type) {
     case 'SET_FIELD':
@@ -163,6 +172,11 @@ const reducer = (state, action) => {
 };
 
 const UserProfileFormUseReducer = () => {
+   /*
+  useReducer returns:
+  - state  → current state object
+  - dispatch → function to send actions
+  */
   const [state, dispatch] = useReducer(reducer, initialState);
 
   console.log('useReducer component render');

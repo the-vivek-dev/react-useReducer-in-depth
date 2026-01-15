@@ -1,4 +1,7 @@
 /*
+
+------------------------------Hindi Version---------------------------------
+
 useReducer mujhe useState se zyada clear aur easy kyun laga
 
 Normally jab hum useState ka use karte hain, to multiple input fields ke liye
@@ -59,7 +62,10 @@ complex scenarios me useReducer
 ek zyada scalable aur organized solution provide karta hai.
 */
 
+
 /*
+----------------------English Version--------------------------
+
 Why useReducer feels easier and more structured than useState
 
 Normally, when we use useState,
@@ -133,6 +139,44 @@ for simple and small use cases,
 useReducer provides a more scalable
 and organized solution for complex state management.
 */
+
+/*
+
+------------------useState vs useReducer (Syntax & Basic Comparison)--------------------
+
+ useState:
+const [count, setCount] = useState(0);
+
+- count → current state value
+- setCount → function to update the state
+
+ useReducer:
+const [state, dispatch] = useReducer(reducer, initialState);
+
+- state → current state object (similar to count in useState)
+- dispatch → function to send actions to reducer (similar to setCount in useState)
+
+Explanation:
+
+- Agar hum compare kare:
+    - useState me `count` jo value store karta hai, useReducer me `state` wahi kaam karta hai,
+      bas ye object ho sakta hai jisme multiple properties ho sakti hain.
+    - useState me `setCount` jo kaam karta hai (state update), useReducer me `dispatch` wahi kaam karta hai,
+      bas ye **ek action object pass karta hai reducer ko**.
+      - Aur ye action object ke andar properties hoti hain, jaise `type`, `field`, `value`, 
+      jo differentiate karte hain multiple states ko — yani ki multiple
+      useState hooks ka kaam ek hi object + dispatch se manage ho jata hai.
+
+- Simple shabdon me:
+    → state = count  
+    → dispatch(action) = setCount(newValue)
+
+Ye syntax comparison sirf **basic understanding ke liye hai**,
+aur samjhata hai ki useReducer me **state + dispatch ka useState ke counterparts ke barabar hai**,
+lekin zyada scalable aur structured form me.
+------------------------------------------------------------
+*/
+
 
 import React, { useReducer } from 'react';
 /*

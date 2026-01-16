@@ -8,7 +8,8 @@ Normally jab hum useState ka use karte hain, to multiple input fields ke liye
 hume multiple alag-alag states banani padti hain.
 Jaise 5 fields ke liye 5 alag useState hooks.
 Ye approach simple cases me theek hoti hai, lekin jaise-jaise form
-ya logic bada hota jata hai, code complex aur manage karna mushkil ho jata hai.
+ya logic bada hota jata hai, hamari useState hook bhi jyda ho jata h, 
+jisse code complex aur manage karna mushkil ho jata hai.
 
 Jab maine useReducer use kiya, to maine notice kiya ki unhi 5 alag-alag states
 ki jagah ek single state object hota hai, jisme 5 alag-alag properties hoti hain.
